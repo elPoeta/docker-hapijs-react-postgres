@@ -1,0 +1,51 @@
+
+version: '3.1'
+
+services:
+  ################################
+  #   Setup postgres container
+  ################################
+  postgres:
+      container_name: test-db
+      image: postgres:11-alpine
+      ports:
+        - '5431:5432'
+      environment:
+        - POSTGRES_USER=docker
+        - POSTGRES_PASSWORD=password 
+        - POSTGRES_DB=my_test_db 
+      volumes:
+        - ./postgres-data:/var/lib/postgresql/data
+      build:
+        context: .
+        dockerfile: ./pgconfig/Dockerfile
+ 
+################################
+#   Setup node container
+################################
+  server:
+    build: ./server
+    expose:
+      - 5000
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server/src:/usr/src/app/src/
+    command: npm run dev
+    environment: 
+     - NODE_ENV=local
+     - DATABASE_URL=postgres://docker:password@test-db:5432/my_test_db
+     - PORT=5000
+    links:
+      - postgres 
+      
+  client:
+    volumes:
+      - ./client/src:/usr/src/app/src
+      - ./client/public:/usr/src/app/public
+    command: npm run start
+    build: ./client
+    ports:
+      - 4000:3000
+    links:
+      - server 

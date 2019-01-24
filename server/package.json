@@ -1,0 +1,20 @@
+{
+  "name": "docker-node-hapi-react-redux",
+  "version": "1.0.0",
+  "description": "Node React Redux app in docker container",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --watch src src/server.js"
+  },
+  "author": "Leonardo Tosetto ( leonardo.a.tosetto@gmail.com )",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^18.0.0",
+    "joi": "^14.3.1",
+    "pg": "^7.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
