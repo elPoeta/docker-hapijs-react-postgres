@@ -38,7 +38,7 @@ class PeopleDb {
         let client = await pool.connect();
         try {
 
-            const people = await client.query('INSERT INTO people (first_name, email) VALUES($1,$2) RETURNING *', [newPeople.firstName, newPeople.email]);
+            const people = await client.query('INSERT INTO people (first_name, email) VALUES($1,$2) RETURNING *', [newPeople.first_name, newPeople.email]);
 
             return people.rows[0];
 
@@ -57,7 +57,7 @@ class PeopleDb {
         let client = await pool.connect();
         try {
 
-            const people = await client.query('UPDATE people SET first_name=($1), email=($2) WHERE id=($3) RETURNING *', [updPeople.firstName, updPeople.email, updPeople.id]);
+            const people = await client.query('UPDATE people SET first_name=($1), email=($2) WHERE id=($3) RETURNING *', [updPeople.first_name, updPeople.email, updPeople.id]);
 
             return people.rows[0];
 

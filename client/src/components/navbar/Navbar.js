@@ -8,6 +8,7 @@ const Navbar = () => {
                 <a href="/" className="brand-logo">People's</a>
                 <ul className="right">
                     <li><Link to="/">Home</Link></li>
+                    <li><NavLink to="/people">People</NavLink></li>
                     <li><NavLink to="/about">About</NavLink></li>
                 </ul>
             </div>

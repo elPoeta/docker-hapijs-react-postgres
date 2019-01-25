@@ -27,13 +27,15 @@ class AddPeople extends Component {
                 <form onSubmit={this.handleAddPeopleSubmit}>
                     <div className="input-field col s2 ">
                         <label htmlFor="firstName">Name</label>
+                        <br />
                         <input type="text" name="firstName" id="first_name" onChange={this.handleAddPeopleChange} value={this.state.first_name} />
                     </div>
                     <div className="input-field col s2 ">
                         <label htmlFor="email">e-mail</label>
+                        <br />
                         <input type="email" name="email" id="email" onChange={this.handleAddPeopleChange} value={this.state.email} />
                     </div>
-                    <button className="waves-effect waves-light btn">Submit</button>
+                    <button className="waves-effect waves-light btn">Add</button>
                 </form>
             </div>
         )

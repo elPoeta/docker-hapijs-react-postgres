@@ -38,20 +38,20 @@ module.exports = {
                 path: "/api/people/insert",
                 config: {
                     handler: async (request, h) => {
-                        //  console.log(request.payload);
                         try {
 
                             const newPeople = await peopleDb.insertPeople(request.payload);
+
                             return h.response({ msg: 'Created', people: newPeople }).code(201);
 
                         } catch (error) {
                             console.log('post ::  ', error);
                         }
-                        return h.response('Not Created').code(400);
+                        return h.response({ msg: 'Not Created' }).code(400);
                     },
                     validate: {
                         payload: {
-                            firstName: Joi.string().required(),
+                            first_name: Joi.string().required(),
                             email: Joi.string().email({ minDomainAtoms: 2 }).required()
                         }
                     }
@@ -78,7 +78,7 @@ module.exports = {
                     validate: {
                         payload: {
                             id: Joi.number().integer().required(),
-                            firstName: Joi.string().required(),
+                            first_name: Joi.string().required(),
                             email: Joi.string().email({ minDomainAtoms: 2 }).required()
                         }
                     }
