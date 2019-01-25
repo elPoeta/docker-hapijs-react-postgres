@@ -9,6 +9,6 @@ Sample api rest - hapijs backend | react frontend  | postgresql db in a docker c
 
     $ docker-compose up
 
-# View on port 4000
+# View on port 3000
 
-    localhost:4000
+    localhost:3000

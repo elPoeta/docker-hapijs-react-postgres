@@ -9,7 +9,7 @@ const Server = new ConfigServer({
         files: {
             relativeTo: Path.join(__dirname, '../public')
         },
-        cors: { origin: ['http://localhost:4000'] }
+        cors: { origin: ['http://localhost:3000'] }
     },
     app: {}
 });

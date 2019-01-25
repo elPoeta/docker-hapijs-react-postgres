@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Navbar from './components/navbar/Navbar';
+import Home from './components/home/Home';
+import About from './components/about/About';
+import AddPeople from './components/addPeople/AddPeople';
 
 class App extends Component {
   state = {
@@ -10,6 +15,12 @@ class App extends Component {
     const data = await response.json();
     const peoples = data.peoples;
     this.setState({ peoples })
+  }
+  addPeople = people => {
+    people.id = Math.random();
+    const peoples = [...this.state.peoples, people];
+
+    this.setState({ peoples });
   }
   render() {
     const peoples = this.state.peoples.map(people => {
@@ -22,10 +33,16 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <header className={classes.header}>
-          <h1>This people come from postgres db and node hapijs server</h1>
-        </header>
+        <BrowserRouter>
+          <div className={classes.App}>
+            <Navbar />
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+          </div>
+        </BrowserRouter>
+        <hr />
         {peoples}
+        <AddPeople addPeople={this.addPeople} />
       </div>
     );
   }
