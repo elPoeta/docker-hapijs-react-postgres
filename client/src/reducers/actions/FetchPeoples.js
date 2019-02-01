@@ -21,22 +21,20 @@ export const fetchPeoples = peoples => {
     };
 }
 
-export const peoplesFetchData = url => {
-    return (dispatch) => {
-        dispatch(peoplesIsLoading(true));
+export const peoplesFetchData = url => dispatch => {
+    dispatch(peoplesIsLoading(true));
 
-        fetch(url)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
 
-                dispatch(peoplesIsLoading(false));
+            dispatch(peoplesIsLoading(false));
 
-                return response;
-            })
-            .then(response => response.json())
-            .then(peoples => dispatch(fetchPeoples(peoples.peoples)))
-            .catch(() => dispatch(peoplessHasErrored(true)));
-    };
-}
+            return response;
+        })
+        .then(response => response.json())
+        .then(peoples => dispatch(fetchPeoples(peoples.peoples)))
+        .catch(() => dispatch(peoplessHasErrored(true)));
+};

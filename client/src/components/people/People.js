@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AddPeople from './AddPeople';
 import { connect } from 'react-redux';
 import { peoplesFetchData } from '../../reducers/actions/FetchPeoples'
+import Spinner from '../spinner/spinner';
 
 class Peoples extends Component {
 
@@ -15,7 +16,8 @@ class Peoples extends Component {
         }
 
         if (this.props.isLoading) {
-            return <p>Loading…</p>;
+            //return <p>Loading…</p>;
+            return <Spinner />
         }
         const peoples = this.props.peoples.map(people => {
             return (
@@ -46,7 +48,7 @@ class Peoples extends Component {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         peoples: state.peoples,
         hasErrored: state.peoplesHasErrored,
@@ -54,7 +56,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         fetchPeoples: url => dispatch(peoplesFetchData(url))
     };

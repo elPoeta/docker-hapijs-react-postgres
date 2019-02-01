@@ -20,7 +20,7 @@ export const peoplesIsLoading = (state = false, action) => {
     }
 }
 
-export function peoples(state = [], action) {
+export const peoples = (state = [], action) => {
     switch (action.type) {
         case types.FETCH_PEOPLES:
             return action.peoples;
