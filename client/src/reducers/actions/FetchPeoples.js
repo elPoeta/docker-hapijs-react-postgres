@@ -1,6 +1,6 @@
 import * as types from '../constants/types';
 
-export const peoplessHasErrored = bool => {
+export const peoplesHasErrored = bool => {
     return {
         type: types.PEOPLES_HAS_ERRORED,
         hasErrored: bool
@@ -36,5 +36,5 @@ export const peoplesFetchData = url => dispatch => {
         })
         .then(response => response.json())
         .then(peoples => dispatch(fetchPeoples(peoples.peoples)))
-        .catch(() => dispatch(peoplessHasErrored(true)));
+        .catch(() => dispatch(peoplesHasErrored(true)));
 };
