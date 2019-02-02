@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AddPeople from './AddPeople';
 import { connect } from 'react-redux';
-import { getPeoples } from '../../reducers/actions/actions';
+import { getPeoples, createPeople } from '../../reducers/actions/actions';
 import Spinner from '../spinner/spinner';
 
 class Peoples extends Component {
@@ -12,7 +12,7 @@ class Peoples extends Component {
     }
     addPeople = people => {
         console.log('people :: ', people);
-
+        this.props.createPeople(people);
     }
     render() {
         console.log(this.props)
@@ -61,7 +61,7 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { getPeoples })(Peoples);
+export default connect(mapStateToProps, { getPeoples, createPeople })(Peoples);
 
 
 /*import React, { Component } from 'react'

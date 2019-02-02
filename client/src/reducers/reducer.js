@@ -10,8 +10,6 @@ const initialState = {
 export const rootReducer = (state = initialState, action) => {
     console.log(action);
     switch (action.type) {
-        case types.IS_LOADING:
-            return { ...state, isLoading: true };
         case types.GET_PEOPLES_SUCCESS:
             console.log('peoples :: ', action.payload);
             return {
@@ -20,6 +18,17 @@ export const rootReducer = (state = initialState, action) => {
                 isLoading: false,
                 peoples: action.payload
             };
+        case types.CREATE_PEOPLE_SUCCESS:
+            console.log('peoples :: ', action.payload);
+            return {
+                ...state,
+                success: true,
+                isLoading: false,
+                peoples: [...state.peoples, action.payload]
+            };
+
+        case types.IS_LOADING:
+            return { ...state, isLoading: true };
         case types.HAS_ERROR:
             return { ...state, isLoading: false, error: action.payload };
         default:
