@@ -20,7 +20,7 @@ class Peoples extends Component {
             return <p>Sorry! There was an error loading the peoples</p>;
         }
 
-        if (this.props.isLoading) {
+        if (this.props.isFetching) {
             //return <p>Loading…</p>;
             return <Spinner />
         }
@@ -55,7 +55,7 @@ class Peoples extends Component {
 const mapStateToProps = state => {
     return {
         peoples: state.peoples,
-        isLoading: state.isLoading,
+        isFetching: state.isFetching,
         error: state.error
     };
 };

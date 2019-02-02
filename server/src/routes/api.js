@@ -83,28 +83,25 @@ module.exports = {
                         }
                     }
                 }
-            }
-        ]);
-    }
-}
-
-
-/*
-module.exports = {
-    name: "ApiPlugin",
-    register: async (server, options) => {
-
-        server.route([
+            },
             {
-                method: "GET",
-                path: "/api/test",
+                method: "DELETE",
+                path: "/api/people/delete/{id}",
                 handler: async (request, h) => {
+                    try {
+                        const delPeople = await peopleDb.deletePeople(request.params.id);
+                        const people = await delPeople;
 
-                    return { test: [{ id: 1, name: "leonardo" }, { id: 2, name: "elpoeta" }] }
-                }
+                        return h.response({ msg: 'Deleted', people }).code(202);
+                    } catch (error) {
+                        console.log('Delete :: ', error);
+                    }
+
+                    return h.response('Not Deleted').code(400);
+                },
+
             }
+
         ]);
     }
 }
-
-*/

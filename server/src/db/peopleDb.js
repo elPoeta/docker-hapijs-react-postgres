@@ -70,6 +70,24 @@ class PeopleDb {
             await client.release();
         }
     }
+
+    static async deletePeople(id) {
+        let client = await pool.connect();
+        try {
+
+            const people = await client.query('DELETE FROM people  WHERE id=($1)', [id]);
+
+            return people.rows;
+
+        }
+        catch (error) {
+            return new Error('error');
+        }
+        finally {
+
+            await client.release();
+        }
+    }
 }
 
 module.exports = PeopleDb;

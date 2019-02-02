@@ -4,7 +4,7 @@ const API_URL_BASE = "http://0.0.0.0:5000/api";
 
 export const getPeoples = () => dispatch => {
 
-  dispatch({ type: types.IS_LOADING });
+  dispatch({ type: types.IS_FETCHING });
   fetch(`${API_URL_BASE}/peoples`)
     .then((response) => {
       if (!response.ok) {
@@ -23,7 +23,7 @@ export const getPeoples = () => dispatch => {
 
 export const createPeople = people => dispatch => {
 
-  dispatch({ type: types.IS_LOADING });
+  dispatch({ type: types.IS_FETCHING });
   fetch(`${API_URL_BASE}/people/insert`,
     {
       method: 'POST',
@@ -48,3 +48,8 @@ export const createPeople = people => dispatch => {
     .catch(error => dispatch({ type: types.HAS_ERROR, payload: error }));
 }
 
+export const deletePeople = id => dispatch => {
+  dispatch({ type: types.IS_FETCHING });
+  fetch(`${API_URL_BASE}/people`)
+
+}

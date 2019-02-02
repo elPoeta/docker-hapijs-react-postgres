@@ -2,7 +2,7 @@ import * as types from './constants/types';
 
 const initialState = {
     peoples: [],
-    isLoading: false,
+    isFetching: false,
     success: false,
     error: null
 };
@@ -15,7 +15,7 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 success: true,
-                isLoading: false,
+                isFetching: false,
                 peoples: action.payload
             };
         case types.CREATE_PEOPLE_SUCCESS:
@@ -23,14 +23,18 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 success: true,
-                isLoading: false,
+                isFetching: false,
                 peoples: [...state.peoples, action.payload]
             };
-
-        case types.IS_LOADING:
-            return { ...state, isLoading: true };
+        case types.DELETE_PEOPLE_SUCCESS:
+            return {
+                ...state,
+                success: true
+            }
+        case types.IS_FETCHING:
+            return { ...state, isFetching: true };
         case types.HAS_ERROR:
-            return { ...state, isLoading: false, error: action.payload };
+            return { ...state, isFetching: false, error: action.payload };
         default:
             return state;
     }
