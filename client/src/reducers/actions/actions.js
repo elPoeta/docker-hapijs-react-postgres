@@ -10,12 +10,12 @@ export const getPeoples = () => dispatch => {
       if (!response.ok) {
         throw Error(response.statusText);
       }
-      console.log('response', response);
+
       return response;
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data :: ', data)
+
       dispatch({ type: types.GET_PEOPLES_SUCCESS, payload: data.peoples });
     })
     .catch(error => dispatch({ type: types.HAS_ERROR, payload: error }));
@@ -37,12 +37,12 @@ export const createPeople = people => dispatch => {
       if (!response.ok) {
         throw Error(response.statusText);
       }
-      console.log('response', response);
+
       return response;
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data :: ', data)
+
       dispatch({ type: types.CREATE_PEOPLE_SUCCESS, payload: data.people });
     })
     .catch(error => dispatch({ type: types.HAS_ERROR, payload: error }));
@@ -50,6 +50,26 @@ export const createPeople = people => dispatch => {
 
 export const deletePeople = id => dispatch => {
   dispatch({ type: types.IS_FETCHING });
-  fetch(`${API_URL_BASE}/people`)
+  fetch(`${API_URL_BASE}/people/delete/${id}`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+
+      return response;
+    })
+    .then(response => response.json())
+    .then(data => {
+
+      dispatch({ type: types.DELETE_PEOPLE_SUCCESS, payload: id });
+    })
+    .catch(error => dispatch({ type: types.HAS_ERROR, payload: error }));
 
 }

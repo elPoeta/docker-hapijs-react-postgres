@@ -88,11 +88,15 @@ module.exports = {
                 method: "DELETE",
                 path: "/api/people/delete/{id}",
                 handler: async (request, h) => {
-                    try {
-                        const delPeople = await peopleDb.deletePeople(request.params.id);
-                        const people = await delPeople;
 
-                        return h.response({ msg: 'Deleted', people }).code(202);
+                    try {
+                        if (!isNaN(request.params.id)) {
+                            const delPeople = await peopleDb.deletePeople(request.params.id);
+                            const people = await delPeople;
+
+                            return h.response({ msg: 'Deleted', people }).code(202);
+                        }
+                        return h.response('Not Deleted').code(400);
                     } catch (error) {
                         console.log('Delete :: ', error);
                     }

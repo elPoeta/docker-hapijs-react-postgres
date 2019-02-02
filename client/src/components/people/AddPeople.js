@@ -21,6 +21,7 @@ class AddPeople extends Component {
                 email: ''
             });
     }
+
     render() {
         return (
             <div className="container">

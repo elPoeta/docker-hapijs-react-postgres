@@ -11,7 +11,7 @@ export const rootReducer = (state = initialState, action) => {
     console.log(action);
     switch (action.type) {
         case types.GET_PEOPLES_SUCCESS:
-            console.log('peoples :: ', action.payload);
+
             return {
                 ...state,
                 success: true,
@@ -19,7 +19,7 @@ export const rootReducer = (state = initialState, action) => {
                 peoples: action.payload
             };
         case types.CREATE_PEOPLE_SUCCESS:
-            console.log('peoples :: ', action.payload);
+
             return {
                 ...state,
                 success: true,
@@ -29,7 +29,10 @@ export const rootReducer = (state = initialState, action) => {
         case types.DELETE_PEOPLE_SUCCESS:
             return {
                 ...state,
-                success: true
+                success: true,
+                isFetching: false,
+                peoples: [...state.peoples.filter(p => p.id !== action.payload)]
+
             }
         case types.IS_FETCHING:
             return { ...state, isFetching: true };
