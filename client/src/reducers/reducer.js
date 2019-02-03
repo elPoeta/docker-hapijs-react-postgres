@@ -26,6 +26,21 @@ export const rootReducer = (state = initialState, action) => {
                 isFetching: false,
                 peoples: [...state.peoples, action.payload]
             };
+        case types.EDIT_PEOPLE_SUCCESS:
+            {
+                const peopleIndex = state.peoples.findIndex(p => {
+                    return p.id === action.payload.id;
+                });
+                const peoples = [...state.peoples];
+                peoples[peopleIndex] = action.payload;
+                return {
+                    ...state,
+                    success: true,
+                    isFetching: false,
+                    peoples: peoples
+                };
+            }
+
         case types.DELETE_PEOPLE_SUCCESS:
             return {
                 ...state,

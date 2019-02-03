@@ -73,3 +73,30 @@ export const deletePeople = id => dispatch => {
     .catch(error => dispatch({ type: types.HAS_ERROR, payload: error }));
 
 }
+
+export const editPeople = people => dispatch => {
+
+  dispatch({ type: types.IS_FETCHING });
+  fetch(`${API_URL_BASE}/people/update`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(people),
+
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+
+      return response;
+    })
+    .then(response => response.json())
+    .then(data => {
+
+      dispatch({ type: types.EDIT_PEOPLE_SUCCESS, payload: data.people });
+    })
+    .catch(error => dispatch({ type: types.HAS_ERROR, payload: error }));
+}

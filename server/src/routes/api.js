@@ -63,7 +63,7 @@ module.exports = {
                 path: "/api/people/update",
                 config: {
                     handler: async (request, h) => {
-                        console.log(request.payload);
+
                         try {
 
                             const updPeople = await peopleDb.updatePeople(request.payload);
