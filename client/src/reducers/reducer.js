@@ -7,7 +7,7 @@ const initialState = {
     error: null
 };
 
-export const rootReducer = (state = initialState, action) => {
+export const peopleReducer = (state = initialState, action) => {
     console.log(action);
     switch (action.type) {
         case types.GET_PEOPLES_SUCCESS:
@@ -28,9 +28,7 @@ export const rootReducer = (state = initialState, action) => {
             };
         case types.EDIT_PEOPLE_SUCCESS:
             {
-                const peopleIndex = state.peoples.findIndex(p => {
-                    return p.id === action.payload.id;
-                });
+                const peopleIndex = state.peoples.findIndex(p => p.id === action.payload.id);
                 const peoples = [...state.peoples];
                 peoples[peopleIndex] = action.payload;
                 return {

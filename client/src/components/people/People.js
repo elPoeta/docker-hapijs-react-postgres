@@ -120,9 +120,9 @@ class Peoples extends Component {
 
 const mapStateToProps = state => {
     return {
-        peoples: state.peoples,
-        isFetching: state.isFetching,
-        error: state.error
+        peoples: state.peoples.peoples,
+        isFetching: state.peoples.isFetching,
+        error: state.peoples.error
     };
 };
 
